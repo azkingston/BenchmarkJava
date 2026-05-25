@@ -33,15 +33,13 @@ public class BenchmarkTest00958 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00958", "FileName");
+        javax.servlet.http.Cookie userCookie = new javax.servlet.http.Cookie("BenchmarkTest00958", "FileName");
         userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
         userCookie.setSecure(true);
         userCookie.setPath(request.getRequestURI());
         userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
         response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/pathtraver-01/BenchmarkTest00958.html");
+        javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("/pathtraver-01/BenchmarkTest00958.html");
         rd.include(request, response);
     }
 
@@ -68,7 +66,6 @@ public class BenchmarkTest00958 extends HttpServlet {
         java.io.InputStream is = null;
 
         try {
-            java.nio.file.Path path = java.nio.file.Paths.get(fileName);
             is = java.nio.file.Files.newInputStream(path, java.nio.file.StandardOpenOption.READ);
             byte[] b = new byte[1000];
             int size = is.read(b);
@@ -85,9 +82,7 @@ public class BenchmarkTest00958 extends HttpServlet {
             response.getWriter()
                     .println(
                             "Problem getting InputStream: "
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
+                                    + org.owasp.esapi.ESAPI
                                             .encoder()
                                             .encodeForHTML(e.getMessage()));
         } finally {

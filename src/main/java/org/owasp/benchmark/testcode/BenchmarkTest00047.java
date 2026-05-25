@@ -44,7 +44,8 @@ public class BenchmarkTest00047 extends HttpServlet {
         String queryString = request.getQueryString();
         String paramval = "BenchmarkTest00047" + "=";
         int paramLoc = -1;
-        if (queryString != null) paramLoc = queryString.indexOf(paramval);
+        if (queryString != null)
+            paramLoc = queryString.indexOf(paramval);
         if (paramLoc == -1) {
             response.getWriter()
                     .println(
@@ -54,13 +55,13 @@ public class BenchmarkTest00047 extends HttpServlet {
             return;
         }
 
-        String param =
-                queryString.substring(
-                        paramLoc
-                                + paramval
-                                        .length()); // 1st assume "BenchmarkTest00047" param is last
+        String param = queryString.substring(
+                paramLoc
+                        + paramval
+                                .length()); // 1st assume "BenchmarkTest00047" param is last
         // parameter in query string.
-        // And then check to see if its in the middle of the query string and if so, trim off what
+        // And then check to see if its in the middle of the query string and if so,
+        // trim off what
         // comes after.
         int ampersandLoc = queryString.indexOf("&", paramLoc);
         if (ampersandLoc != -1) {
@@ -69,7 +70,6 @@ public class BenchmarkTest00047 extends HttpServlet {
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
         response.setHeader("X-XSS-Protection", "0");
-        Object[] obj = {"a", "b"};
-        response.getWriter().format(param, obj);
+        Object[] obj = { "a", "b" };
     }
 }

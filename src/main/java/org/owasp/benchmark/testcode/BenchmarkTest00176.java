@@ -45,7 +45,8 @@ public class BenchmarkTest00176 extends HttpServlet {
             param = request.getHeader("BenchmarkTest00176");
         }
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        // URL Decode the header value since req.getHeader() doesn't. Unlike
+        // req.getParameter().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
         String bar = param;
@@ -56,13 +57,11 @@ public class BenchmarkTest00176 extends HttpServlet {
             cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
         }
 
-        String[] argsEnv = {"Foo=bar"};
+        String[] argsEnv = { "Foo=bar" };
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p =
-                    r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty("user.dir")));
-            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+            Process p = org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");
             response.getWriter()

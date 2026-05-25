@@ -45,14 +45,16 @@ public class BenchmarkTest00130 extends HttpServlet {
             param = request.getHeader("BenchmarkTest00130");
         }
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        // URL Decode the header value since req.getHeader() doesn't. Unlike
+        // req.getParameter().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
         String bar;
         String guess = "ABC";
         char switchTarget = guess.charAt(1); // condition 'B', which is safe
 
-        // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+        // Simple case statement that assigns param to bar on conditions 'A', 'C', or
+        // 'D'
         switch (switchTarget) {
             case 'A':
                 bar = param;
@@ -72,28 +74,28 @@ public class BenchmarkTest00130 extends HttpServlet {
         // Code based on example from:
         // http://examples.javacodegeeks.com/core-java/crypto/encrypt-decrypt-file-stream-with-des/
         // 8-byte initialization vector
-        //		byte[] iv = {
-        //			(byte)0xB2, (byte)0x12, (byte)0xD5, (byte)0xB2,
-        //			(byte)0x44, (byte)0x21, (byte)0xC3, (byte)0xC3033
-        //		};
-        //		java.security.SecureRandom random = new java.security.SecureRandom();
-        //		byte[] iv = random.generateSeed(16);
+        // byte[] iv = {
+        // (byte)0xB2, (byte)0x12, (byte)0xD5, (byte)0xB2,
+        // (byte)0x44, (byte)0x21, (byte)0xC3, (byte)0xC3033
+        // };
+        // java.security.SecureRandom random = new java.security.SecureRandom();
+        // byte[] iv = random.generateSeed(16);
 
         try {
             java.util.Properties benchmarkprops = new java.util.Properties();
             benchmarkprops.load(
                     this.getClass().getClassLoader().getResourceAsStream("benchmark.properties"));
             String algorithm = benchmarkprops.getProperty("cryptoAlg2", "AES/ECB/PKCS5Padding");
-            javax.crypto.Cipher c = javax.crypto.Cipher.getInstance(algorithm);
 
             // Prepare the cipher to encrypt
             javax.crypto.SecretKey key = javax.crypto.KeyGenerator.getInstance("AES").generateKey();
             c.init(javax.crypto.Cipher.ENCRYPT_MODE, key);
 
             // encrypt and store the results
-            byte[] input = {(byte) '?'};
+            byte[] input = { (byte) '?' };
             Object inputParam = bar;
-            if (inputParam instanceof String) input = ((String) inputParam).getBytes();
+            if (inputParam instanceof String)
+                input = ((String) inputParam).getBytes();
             if (inputParam instanceof java.io.InputStream) {
                 byte[] strInput = new byte[1000];
                 int i = ((java.io.InputStream) inputParam).read(strInput);
@@ -107,12 +109,10 @@ public class BenchmarkTest00130 extends HttpServlet {
             }
             byte[] result = c.doFinal(input);
 
-            java.io.File fileTarget =
-                    new java.io.File(
-                            new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
-                            "passwordFile.txt");
-            java.io.FileWriter fw =
-                    new java.io.FileWriter(fileTarget, true); // the true will append the new data
+            java.io.File fileTarget = new java.io.File(
+                    new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
+                    "passwordFile.txt");
+            java.io.FileWriter fw = new java.io.FileWriter(fileTarget, true); // the true will append the new data
             fw.write(
                     "secret_value="
                             + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true)
@@ -121,9 +121,7 @@ public class BenchmarkTest00130 extends HttpServlet {
             response.getWriter()
                     .println(
                             "Sensitive value: '"
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
+                                    + org.owasp.esapi.ESAPI
                                             .encoder()
                                             .encodeForHTML(new String(input))
                                     + "' encrypted and stored<br/>");

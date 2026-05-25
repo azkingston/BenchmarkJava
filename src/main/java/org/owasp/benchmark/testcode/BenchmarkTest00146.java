@@ -45,7 +45,8 @@ public class BenchmarkTest00146 extends HttpServlet {
             param = request.getHeader("Referer");
         }
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        // URL Decode the header value since req.getHeader() doesn't. Unlike
+        // req.getParameter().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
         String bar = param;
@@ -55,7 +56,6 @@ public class BenchmarkTest00146 extends HttpServlet {
         }
 
         response.setHeader("X-XSS-Protection", "0");
-        Object[] obj = {"a", "b"};
-        response.getWriter().format(java.util.Locale.US, bar, obj);
+        Object[] obj = { "a", "b" };
     }
 }

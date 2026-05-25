@@ -44,7 +44,8 @@ public class BenchmarkTest00517 extends HttpServlet {
         String param = "";
         if (!map.isEmpty()) {
             String[] values = map.get("BenchmarkTest00517");
-            if (values != null) param = values[0];
+            if (values != null)
+                param = values[0];
         }
 
         String bar;
@@ -57,15 +58,14 @@ public class BenchmarkTest00517 extends HttpServlet {
         String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
 
         try {
-            java.sql.Statement statement =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-            statement.execute(sql, new String[] {"username", "password"});
+            java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
             org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
         } catch (java.sql.SQLException e) {
             if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
                 response.getWriter().println("Error processing request.");
                 return;
-            } else throw new ServletException(e);
+            } else
+                throw new ServletException(e);
         }
     }
 }

@@ -33,15 +33,13 @@ public class BenchmarkTest00090 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00090", "ls");
+        javax.servlet.http.Cookie userCookie = new javax.servlet.http.Cookie("BenchmarkTest00090", "ls");
         userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
         userCookie.setSecure(true);
         userCookie.setPath(request.getRequestURI());
         userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
         response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/cmdi-00/BenchmarkTest00090.html");
+        javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("/cmdi-00/BenchmarkTest00090.html");
         rd.include(request, response);
     }
 
@@ -66,8 +64,10 @@ public class BenchmarkTest00090 extends HttpServlet {
 
         // Simple if statement that assigns constant to bar on true condition
         int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
+        if ((7 * 42) - num > 200)
+            bar = "This_should_always_happen";
+        else
+            bar = param;
 
         String cmd = "";
         String osName = System.getProperty("os.name");
@@ -78,7 +78,6 @@ public class BenchmarkTest00090 extends HttpServlet {
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(cmd + bar);
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

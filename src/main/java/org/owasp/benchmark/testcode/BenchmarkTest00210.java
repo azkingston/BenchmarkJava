@@ -66,26 +66,25 @@ public class BenchmarkTest00210 extends HttpServlet {
         // Code based on example from:
         // http://examples.javacodegeeks.com/core-java/crypto/encrypt-decrypt-file-stream-with-des/
         // 8-byte initialization vector
-        //		byte[] iv = {
-        //			(byte)0xB2, (byte)0x12, (byte)0xD5, (byte)0xB2,
-        //			(byte)0x44, (byte)0x21, (byte)0xC3, (byte)0xC3033
-        //		};
+        // byte[] iv = {
+        // (byte)0xB2, (byte)0x12, (byte)0xD5, (byte)0xB2,
+        // (byte)0x44, (byte)0x21, (byte)0xC3, (byte)0xC3033
+        // };
         java.security.SecureRandom random = new java.security.SecureRandom();
         byte[] iv = random.generateSeed(8); // DES requires 8 byte keys
 
         try {
-            javax.crypto.Cipher c = javax.crypto.Cipher.getInstance("DES/CBC/PKCS5Padding");
 
             // Prepare the cipher to encrypt
             javax.crypto.SecretKey key = javax.crypto.KeyGenerator.getInstance("DES").generateKey();
-            java.security.spec.AlgorithmParameterSpec paramSpec =
-                    new javax.crypto.spec.IvParameterSpec(iv);
+            java.security.spec.AlgorithmParameterSpec paramSpec = new javax.crypto.spec.IvParameterSpec(iv);
             c.init(javax.crypto.Cipher.ENCRYPT_MODE, key, paramSpec);
 
             // encrypt and store the results
-            byte[] input = {(byte) '?'};
+            byte[] input = { (byte) '?' };
             Object inputParam = bar;
-            if (inputParam instanceof String) input = ((String) inputParam).getBytes();
+            if (inputParam instanceof String)
+                input = ((String) inputParam).getBytes();
             if (inputParam instanceof java.io.InputStream) {
                 byte[] strInput = new byte[1000];
                 int i = ((java.io.InputStream) inputParam).read(strInput);
@@ -99,12 +98,10 @@ public class BenchmarkTest00210 extends HttpServlet {
             }
             byte[] result = c.doFinal(input);
 
-            java.io.File fileTarget =
-                    new java.io.File(
-                            new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
-                            "passwordFile.txt");
-            java.io.FileWriter fw =
-                    new java.io.FileWriter(fileTarget, true); // the true will append the new data
+            java.io.File fileTarget = new java.io.File(
+                    new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
+                    "passwordFile.txt");
+            java.io.FileWriter fw = new java.io.FileWriter(fileTarget, true); // the true will append the new data
             fw.write(
                     "secret_value="
                             + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true)
@@ -113,9 +110,7 @@ public class BenchmarkTest00210 extends HttpServlet {
             response.getWriter()
                     .println(
                             "Sensitive value: '"
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
+                                    + org.owasp.esapi.ESAPI
                                             .encoder()
                                             .encodeForHTML(new String(input))
                                     + "' encrypted and stored<br/>");

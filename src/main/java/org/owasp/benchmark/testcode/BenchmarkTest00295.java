@@ -47,7 +47,8 @@ public class BenchmarkTest00295 extends HttpServlet {
             param = headers.nextElement(); // just grab first element
         }
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike
+        // req.getParameters().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
         String bar;
@@ -67,9 +68,7 @@ public class BenchmarkTest00295 extends HttpServlet {
             a1 = "sh";
             a2 = "-c";
         }
-        String[] args = {a1, a2, "echo " + bar};
-
-        ProcessBuilder pb = new ProcessBuilder(args);
+        String[] args = { a1, a2, "echo " + bar };
 
         try {
             Process p = pb.start();

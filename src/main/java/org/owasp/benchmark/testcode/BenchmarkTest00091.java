@@ -33,15 +33,14 @@ public class BenchmarkTest00091 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00091", "FOO%3Decho+Injection");
+        javax.servlet.http.Cookie userCookie = new javax.servlet.http.Cookie("BenchmarkTest00091",
+                "FOO%3Decho+Injection");
         userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
         userCookie.setSecure(true);
         userCookie.setPath(request.getRequestURI());
         userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
         response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/cmdi-00/BenchmarkTest00091.html");
+        javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("/cmdi-00/BenchmarkTest00091.html");
         rd.include(request, response);
     }
 
@@ -64,16 +63,14 @@ public class BenchmarkTest00091 extends HttpServlet {
 
         String bar = param;
 
-        String cmd =
-                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-                        this.getClass().getClassLoader());
-        String[] args = {cmd};
-        String[] argsEnv = {bar};
+        String cmd = org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+                this.getClass().getClassLoader());
+        String[] args = { cmd };
+        String[] argsEnv = { bar };
 
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(args, argsEnv);
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

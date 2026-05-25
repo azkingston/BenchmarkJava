@@ -47,7 +47,8 @@ public class BenchmarkTest02035 extends HttpServlet {
             param = headers.nextElement(); // just grab first element
         }
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike
+        // req.getParameters().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
         String bar = doSomething(request, param);
@@ -56,7 +57,6 @@ public class BenchmarkTest02035 extends HttpServlet {
         java.io.InputStream is = null;
 
         try {
-            java.nio.file.Path path = java.nio.file.Paths.get(fileName);
             is = java.nio.file.Files.newInputStream(path, java.nio.file.StandardOpenOption.READ);
             byte[] b = new byte[1000];
             int size = is.read(b);
@@ -73,9 +73,7 @@ public class BenchmarkTest02035 extends HttpServlet {
             response.getWriter()
                     .println(
                             "Problem getting InputStream: "
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
+                                    + org.owasp.esapi.ESAPI
                                             .encoder()
                                             .encodeForHTML(e.getMessage()));
         } finally {

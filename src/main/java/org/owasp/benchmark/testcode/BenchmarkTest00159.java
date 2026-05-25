@@ -45,11 +45,11 @@ public class BenchmarkTest00159 extends HttpServlet {
             param = request.getHeader("BenchmarkTest00159");
         }
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        // URL Decode the header value since req.getHeader() doesn't. Unlike
+        // req.getParameter().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        org.owasp.benchmark.helpers.ThingInterface thing =
-                org.owasp.benchmark.helpers.ThingFactory.createThing();
+        org.owasp.benchmark.helpers.ThingInterface thing = org.owasp.benchmark.helpers.ThingFactory.createThing();
         String bar = thing.doSomething(param);
 
         String a1 = "";
@@ -62,9 +62,7 @@ public class BenchmarkTest00159 extends HttpServlet {
             a1 = "sh";
             a2 = "-c";
         }
-        String[] args = {a1, a2, "echo " + bar};
-
-        ProcessBuilder pb = new ProcessBuilder(args);
+        String[] args = { a1, a2, "echo " + bar };
 
         try {
             Process p = pb.start();

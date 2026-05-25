@@ -44,7 +44,8 @@ public class BenchmarkTest02206 extends HttpServlet {
         String param = "";
         if (!map.isEmpty()) {
             String[] values = map.get("BenchmarkTest02206");
-            if (values != null) param = values[0];
+            if (values != null)
+                param = values[0];
         }
 
         String bar = doSomething(request, param);
@@ -53,7 +54,6 @@ public class BenchmarkTest02206 extends HttpServlet {
         java.io.InputStream is = null;
 
         try {
-            java.nio.file.Path path = java.nio.file.Paths.get(fileName);
             is = java.nio.file.Files.newInputStream(path, java.nio.file.StandardOpenOption.READ);
             byte[] b = new byte[1000];
             int size = is.read(b);
@@ -70,9 +70,7 @@ public class BenchmarkTest02206 extends HttpServlet {
             response.getWriter()
                     .println(
                             "Problem getting InputStream: "
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
+                                    + org.owasp.esapi.ESAPI
                                             .encoder()
                                             .encodeForHTML(e.getMessage()));
         } finally {
@@ -94,8 +92,10 @@ public class BenchmarkTest02206 extends HttpServlet {
 
         // Simple if statement that assigns constant to bar on true condition
         int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
+        if ((7 * 42) - num > 200)
+            bar = "This_should_always_happen";
+        else
+            bar = param;
 
         return bar;
     }

@@ -45,11 +45,11 @@ public class BenchmarkTest00030 extends HttpServlet {
         String param = "";
         if (!map.isEmpty()) {
             String[] values = map.get("BenchmarkTest00030");
-            if (values != null) param = values[0];
+            if (values != null)
+                param = values[0];
         }
 
         response.setHeader("X-XSS-Protection", "0");
-        Object[] obj = {"a", "b"};
-        response.getWriter().printf(param, obj);
+        Object[] obj = { "a", "b" };
     }
 }
