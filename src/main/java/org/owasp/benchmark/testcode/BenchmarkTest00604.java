@@ -59,25 +59,23 @@ public class BenchmarkTest00604 extends HttpServlet {
 
         String bar = "";
         if (param != null) {
-            bar =
-                    new String(
-                            org.apache.commons.codec.binary.Base64.decodeBase64(
-                                    org.apache.commons.codec.binary.Base64.encodeBase64(
-                                            param.getBytes())));
+            bar = new String(
+                    org.apache.commons.codec.binary.Base64.decodeBase64(
+                            org.apache.commons.codec.binary.Base64.encodeBase64(
+                                    param.getBytes())));
         }
 
         String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
 
         try {
-            java.sql.Statement statement =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-            java.sql.ResultSet rs = statement.executeQuery(sql);
+            java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
             org.owasp.benchmark.helpers.DatabaseHelper.printResults(rs, sql, response);
         } catch (java.sql.SQLException e) {
             if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
                 response.getWriter().println("Error processing request.");
                 return;
-            } else throw new ServletException(e);
+            } else
+                throw new ServletException(e);
         }
     }
 }

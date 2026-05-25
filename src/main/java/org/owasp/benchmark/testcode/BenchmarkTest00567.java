@@ -59,11 +59,10 @@ public class BenchmarkTest00567 extends HttpServlet {
 
         String bar = "";
         if (param != null) {
-            bar =
-                    new String(
-                            org.apache.commons.codec.binary.Base64.decodeBase64(
-                                    org.apache.commons.codec.binary.Base64.encodeBase64(
-                                            param.getBytes())));
+            bar = new String(
+                    org.apache.commons.codec.binary.Base64.decodeBase64(
+                            org.apache.commons.codec.binary.Base64.encodeBase64(
+                                    param.getBytes())));
         }
 
         String cmd = "";
@@ -75,7 +74,6 @@ public class BenchmarkTest00567 extends HttpServlet {
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(cmd + bar);
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

@@ -47,15 +47,18 @@ public class BenchmarkTest00308 extends HttpServlet {
             param = headers.nextElement(); // just grab first element
         }
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike
+        // req.getParameters().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
         String bar;
 
         // Simple if statement that assigns constant to bar on true condition
         int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
+        if ((7 * 42) - num > 200)
+            bar = "This_should_always_happen";
+        else
+            bar = param;
 
         String cmd = "";
         String osName = System.getProperty("os.name");
@@ -63,11 +66,10 @@ public class BenchmarkTest00308 extends HttpServlet {
             cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
         }
 
-        String[] argsEnv = {"Foo=bar"};
+        String[] argsEnv = { "Foo=bar" };
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(cmd + bar, argsEnv);
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

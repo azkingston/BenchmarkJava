@@ -43,7 +43,8 @@ public class BenchmarkTest00848 extends HttpServlet {
         String queryString = request.getQueryString();
         String paramval = "BenchmarkTest00848" + "=";
         int paramLoc = -1;
-        if (queryString != null) paramLoc = queryString.indexOf(paramval);
+        if (queryString != null)
+            paramLoc = queryString.indexOf(paramval);
         if (paramLoc == -1) {
             response.getWriter()
                     .println(
@@ -53,13 +54,13 @@ public class BenchmarkTest00848 extends HttpServlet {
             return;
         }
 
-        String param =
-                queryString.substring(
-                        paramLoc
-                                + paramval
-                                        .length()); // 1st assume "BenchmarkTest00848" param is last
+        String param = queryString.substring(
+                paramLoc
+                        + paramval
+                                .length()); // 1st assume "BenchmarkTest00848" param is last
         // parameter in query string.
-        // And then check to see if its in the middle of the query string and if so, trim off what
+        // And then check to see if its in the middle of the query string and if so,
+        // trim off what
         // comes after.
         int ampersandLoc = queryString.indexOf("&", paramLoc);
         if (ampersandLoc != -1) {
@@ -72,16 +73,15 @@ public class BenchmarkTest00848 extends HttpServlet {
         String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
 
         try {
-            java.sql.Statement statement =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-            statement.addBatch(sql);
+            java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
             int[] counts = statement.executeBatch();
             org.owasp.benchmark.helpers.DatabaseHelper.printResults(sql, counts, response);
         } catch (java.sql.SQLException e) {
             if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
                 response.getWriter().println("Error processing request.");
                 return;
-            } else throw new ServletException(e);
+            } else
+                throw new ServletException(e);
         }
     }
 }

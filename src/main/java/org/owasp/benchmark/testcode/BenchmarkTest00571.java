@@ -61,19 +61,19 @@ public class BenchmarkTest00571 extends HttpServlet {
 
         // Simple if statement that assigns constant to bar on true condition
         int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
+        if ((7 * 42) - num > 200)
+            bar = "This_should_always_happen";
+        else
+            bar = param;
 
-        String cmd =
-                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-                        this.getClass().getClassLoader());
-        String[] args = {cmd};
-        String[] argsEnv = {bar};
+        String cmd = org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+                this.getClass().getClassLoader());
+        String[] args = { cmd };
+        String[] argsEnv = { bar };
 
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty("user.dir")));
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

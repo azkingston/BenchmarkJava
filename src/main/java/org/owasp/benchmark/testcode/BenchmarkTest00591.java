@@ -57,25 +57,22 @@ public class BenchmarkTest00591 extends HttpServlet {
             }
         }
 
-        org.owasp.benchmark.helpers.ThingInterface thing =
-                org.owasp.benchmark.helpers.ThingFactory.createThing();
+        org.owasp.benchmark.helpers.ThingInterface thing = org.owasp.benchmark.helpers.ThingFactory.createThing();
         String bar = thing.doSomething(param);
 
         String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
 
         try {
-            java.sql.Connection connection =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
-            java.sql.PreparedStatement statement =
-                    connection.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, "foo");
+            java.sql.Connection connection = org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
+            java.sql.PreparedStatement statement = statement.setString(1, "foo");
             statement.execute();
             org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
         } catch (java.sql.SQLException e) {
             if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
                 response.getWriter().println("Error processing request.");
                 return;
-            } else throw new ServletException(e);
+            } else
+                throw new ServletException(e);
         }
     }
 }

@@ -43,7 +43,8 @@ public class BenchmarkTest00851 extends HttpServlet {
         String queryString = request.getQueryString();
         String paramval = "BenchmarkTest00851" + "=";
         int paramLoc = -1;
-        if (queryString != null) paramLoc = queryString.indexOf(paramval);
+        if (queryString != null)
+            paramLoc = queryString.indexOf(paramval);
         if (paramLoc == -1) {
             response.getWriter()
                     .println(
@@ -53,13 +54,13 @@ public class BenchmarkTest00851 extends HttpServlet {
             return;
         }
 
-        String param =
-                queryString.substring(
-                        paramLoc
-                                + paramval
-                                        .length()); // 1st assume "BenchmarkTest00851" param is last
+        String param = queryString.substring(
+                paramLoc
+                        + paramval
+                                .length()); // 1st assume "BenchmarkTest00851" param is last
         // parameter in query string.
-        // And then check to see if its in the middle of the query string and if so, trim off what
+        // And then check to see if its in the middle of the query string and if so,
+        // trim off what
         // comes after.
         int ampersandLoc = queryString.indexOf("&", paramLoc);
         if (ampersandLoc != -1) {
@@ -71,21 +72,22 @@ public class BenchmarkTest00851 extends HttpServlet {
 
         // Simple if statement that assigns constant to bar on true condition
         int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
+        if ((7 * 42) - num > 200)
+            bar = "This_should_always_happen";
+        else
+            bar = param;
 
         String sql = "INSERT INTO users (username, password) VALUES ('foo','" + bar + "')";
 
         try {
-            java.sql.Statement statement =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-            int count = statement.executeUpdate(sql, new String[] {"USERNAME", "PASSWORD"});
+            java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
             org.owasp.benchmark.helpers.DatabaseHelper.outputUpdateComplete(sql, response);
         } catch (java.sql.SQLException e) {
             if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
                 response.getWriter().println("Error processing request.");
                 return;
-            } else throw new ServletException(e);
+            } else
+                throw new ServletException(e);
         }
     }
 }

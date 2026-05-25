@@ -43,7 +43,8 @@ public class BenchmarkTest00839 extends HttpServlet {
         String queryString = request.getQueryString();
         String paramval = "BenchmarkTest00839" + "=";
         int paramLoc = -1;
-        if (queryString != null) paramLoc = queryString.indexOf(paramval);
+        if (queryString != null)
+            paramLoc = queryString.indexOf(paramval);
         if (paramLoc == -1) {
             response.getWriter()
                     .println(
@@ -53,13 +54,13 @@ public class BenchmarkTest00839 extends HttpServlet {
             return;
         }
 
-        String param =
-                queryString.substring(
-                        paramLoc
-                                + paramval
-                                        .length()); // 1st assume "BenchmarkTest00839" param is last
+        String param = queryString.substring(
+                paramLoc
+                        + paramval
+                                .length()); // 1st assume "BenchmarkTest00839" param is last
         // parameter in query string.
-        // And then check to see if its in the middle of the query string and if so, trim off what
+        // And then check to see if its in the middle of the query string and if so,
+        // trim off what
         // comes after.
         int ampersandLoc = queryString.indexOf("&", paramLoc);
         if (ampersandLoc != -1) {
@@ -77,18 +78,16 @@ public class BenchmarkTest00839 extends HttpServlet {
         String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
 
         try {
-            java.sql.Connection connection =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
-            java.sql.PreparedStatement statement =
-                    connection.prepareStatement(sql, new String[] {"Column1", "Column2"});
-            statement.setString(1, "foo");
+            java.sql.Connection connection = org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
+            java.sql.PreparedStatement statement = statement.setString(1, "foo");
             statement.execute();
             org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
         } catch (java.sql.SQLException e) {
             if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
                 response.getWriter().println("Error processing request.");
                 return;
-            } else throw new ServletException(e);
+            } else
+                throw new ServletException(e);
         }
     }
 }

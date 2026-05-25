@@ -59,15 +59,13 @@ public class BenchmarkTest00573 extends HttpServlet {
 
         String bar = param;
 
-        String cmd =
-                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-                        this.getClass().getClassLoader());
+        String cmd = org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+                this.getClass().getClassLoader());
 
-        String[] argsEnv = {bar};
+        String[] argsEnv = { bar };
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(cmd, argsEnv);
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

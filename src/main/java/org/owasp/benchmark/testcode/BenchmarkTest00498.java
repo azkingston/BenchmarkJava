@@ -44,28 +44,26 @@ public class BenchmarkTest00498 extends HttpServlet {
         String param = "";
         if (!map.isEmpty()) {
             String[] values = map.get("BenchmarkTest00498");
-            if (values != null) param = values[0];
+            if (values != null)
+                param = values[0];
         }
 
         String bar = "";
         if (param != null) {
-            bar =
-                    new String(
-                            org.apache.commons.codec.binary.Base64.decodeBase64(
-                                    org.apache.commons.codec.binary.Base64.encodeBase64(
-                                            param.getBytes())));
+            bar = new String(
+                    org.apache.commons.codec.binary.Base64.decodeBase64(
+                            org.apache.commons.codec.binary.Base64.encodeBase64(
+                                    param.getBytes())));
         }
 
-        String cmd =
-                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-                        this.getClass().getClassLoader());
-        String[] args = {cmd};
-        String[] argsEnv = {bar};
+        String cmd = org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+                this.getClass().getClassLoader());
+        String[] args = { cmd };
+        String[] argsEnv = { bar };
 
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty("user.dir")));
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

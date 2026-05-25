@@ -44,7 +44,8 @@ public class BenchmarkTest00499 extends HttpServlet {
         String param = "";
         if (!map.isEmpty()) {
             String[] values = map.get("BenchmarkTest00499");
-            if (values != null) param = values[0];
+            if (values != null)
+                param = values[0];
         }
 
         String bar = param;
@@ -55,11 +56,10 @@ public class BenchmarkTest00499 extends HttpServlet {
             cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
         }
 
-        String[] argsEnv = {"Foo=bar"};
+        String[] argsEnv = { "Foo=bar" };
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(cmd + bar, argsEnv);
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

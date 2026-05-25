@@ -47,16 +47,16 @@ public class BenchmarkTest00303 extends HttpServlet {
             param = headers.nextElement(); // just grab first element
         }
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike
+        // req.getParameters().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
         String bar = "";
         if (param != null) {
-            bar =
-                    new String(
-                            org.apache.commons.codec.binary.Base64.decodeBase64(
-                                    org.apache.commons.codec.binary.Base64.encodeBase64(
-                                            param.getBytes())));
+            bar = new String(
+                    org.apache.commons.codec.binary.Base64.decodeBase64(
+                            org.apache.commons.codec.binary.Base64.encodeBase64(
+                                    param.getBytes())));
         }
 
         String cmd = "";
@@ -69,18 +69,17 @@ public class BenchmarkTest00303 extends HttpServlet {
             a1 = "cmd.exe";
             a2 = "/c";
             cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
-            args = new String[] {a1, a2, cmd, bar};
+            args = new String[] { a1, a2, cmd, bar };
         } else {
             a1 = "sh";
             a2 = "-c";
             cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
-            args = new String[] {a1, a2, cmd + bar};
+            args = new String[] { a1, a2, cmd + bar };
         }
 
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(args);
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

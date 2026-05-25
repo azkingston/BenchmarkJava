@@ -57,8 +57,7 @@ public class BenchmarkTest00568 extends HttpServlet {
             }
         }
 
-        org.owasp.benchmark.helpers.ThingInterface thing =
-                org.owasp.benchmark.helpers.ThingFactory.createThing();
+        org.owasp.benchmark.helpers.ThingInterface thing = org.owasp.benchmark.helpers.ThingFactory.createThing();
         String bar = thing.doSomething(param);
 
         String cmd = "";
@@ -71,20 +70,19 @@ public class BenchmarkTest00568 extends HttpServlet {
             a1 = "cmd.exe";
             a2 = "/c";
             cmd = "echo ";
-            args = new String[] {a1, a2, cmd, bar};
+            args = new String[] { a1, a2, cmd, bar };
         } else {
             a1 = "sh";
             a2 = "-c";
             cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ls ");
-            args = new String[] {a1, a2, cmd + bar};
+            args = new String[] { a1, a2, cmd + bar };
         }
 
-        String[] argsEnv = {"foo=bar"};
+        String[] argsEnv = { "foo=bar" };
 
         Runtime r = Runtime.getRuntime();
 
         try {
-            Process p = r.exec(args, argsEnv);
             org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
         } catch (IOException e) {
             System.out.println("Problem executing cmdi - TestCase");

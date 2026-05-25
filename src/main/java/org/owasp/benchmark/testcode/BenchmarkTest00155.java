@@ -45,14 +45,13 @@ public class BenchmarkTest00155 extends HttpServlet {
             param = request.getHeader("Referer");
         }
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        // URL Decode the header value since req.getHeader() doesn't. Unlike
+        // req.getParameter().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        org.owasp.benchmark.helpers.ThingInterface thing =
-                org.owasp.benchmark.helpers.ThingFactory.createThing();
+        org.owasp.benchmark.helpers.ThingInterface thing = org.owasp.benchmark.helpers.ThingFactory.createThing();
         String bar = thing.doSomething(param);
 
         response.setHeader("X-XSS-Protection", "0");
-        response.getWriter().println(bar);
     }
 }
