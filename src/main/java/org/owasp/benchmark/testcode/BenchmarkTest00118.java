@@ -33,13 +33,15 @@ public class BenchmarkTest00118 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie = new javax.servlet.http.Cookie("BenchmarkTest00118", "2222");
+        javax.servlet.http.Cookie userCookie =
+                new javax.servlet.http.Cookie("BenchmarkTest00118", "2222");
         userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
         userCookie.setSecure(true);
         userCookie.setPath(request.getRequestURI());
         userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
         response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("/xpathi-00/BenchmarkTest00118.html");
+        javax.servlet.RequestDispatcher rd =
+                request.getRequestDispatcher("/xpathi-00/BenchmarkTest00118.html");
         rd.include(request, response);
     }
 
@@ -64,17 +66,16 @@ public class BenchmarkTest00118 extends HttpServlet {
 
         // Simple if statement that assigns constant to bar on true condition
         int num = 86;
-        if ((7 * 42) - num > 200)
-            bar = "This_should_always_happen";
-        else
-            bar = param;
+        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+        else bar = param;
 
         try {
-            java.io.FileInputStream file = new java.io.FileInputStream(
-                    org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
-                            "employees.xml", this.getClass().getClassLoader()));
-            javax.xml.parsers.DocumentBuilderFactory builderFactory = javax.xml.parsers.DocumentBuilderFactory
-                    .newInstance();
+            java.io.FileInputStream file =
+                    new java.io.FileInputStream(
+                            org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
+                                    "employees.xml", this.getClass().getClassLoader()));
+            javax.xml.parsers.DocumentBuilderFactory builderFactory =
+                    javax.xml.parsers.DocumentBuilderFactory.newInstance();
             // Prevent XXE
             builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
