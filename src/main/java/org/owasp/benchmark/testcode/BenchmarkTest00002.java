@@ -33,15 +33,13 @@ public class BenchmarkTest00002 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00002", "FileName");
+        javax.servlet.http.Cookie userCookie = new javax.servlet.http.Cookie("BenchmarkTest00002", "FileName");
         userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
         userCookie.setSecure(true);
         userCookie.setPath(request.getRequestURI());
         userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
         response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/pathtraver-00/BenchmarkTest00002.html");
+        javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("/pathtraver-00/BenchmarkTest00002.html");
         rd.include(request, response);
     }
 
@@ -69,7 +67,6 @@ public class BenchmarkTest00002 extends HttpServlet {
         try {
             fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + param;
 
-            fos = new java.io.FileOutputStream(fileName, false);
             response.getWriter()
                     .println(
                             "Now ready to write to file: "
@@ -77,7 +74,7 @@ public class BenchmarkTest00002 extends HttpServlet {
 
         } catch (Exception e) {
             System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
-            //			System.out.println("File exception caught and swallowed: " + e.getMessage());
+            // System.out.println("File exception caught and swallowed: " + e.getMessage());
         } finally {
             if (fos != null) {
                 try {

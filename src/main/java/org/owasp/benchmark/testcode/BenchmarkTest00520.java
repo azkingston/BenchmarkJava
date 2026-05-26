@@ -44,7 +44,8 @@ public class BenchmarkTest00520 extends HttpServlet {
         String param = "";
         if (!map.isEmpty()) {
             String[] values = map.get("BenchmarkTest00520");
-            if (values != null) param = values[0];
+            if (values != null)
+                param = values[0];
         }
 
         String bar;
@@ -55,12 +56,11 @@ public class BenchmarkTest00520 extends HttpServlet {
         bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
 
         try {
-            java.io.FileInputStream file =
-                    new java.io.FileInputStream(
-                            org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
-                                    "employees.xml", this.getClass().getClassLoader()));
-            javax.xml.parsers.DocumentBuilderFactory builderFactory =
-                    javax.xml.parsers.DocumentBuilderFactory.newInstance();
+            java.io.FileInputStream file = new java.io.FileInputStream(
+                    org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
+                            "employees.xml", this.getClass().getClassLoader()));
+            javax.xml.parsers.DocumentBuilderFactory builderFactory = javax.xml.parsers.DocumentBuilderFactory
+                    .newInstance();
             // Prevent XXE
             builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
@@ -70,8 +70,6 @@ public class BenchmarkTest00520 extends HttpServlet {
 
             String expression = "/Employees/Employee[@emplid='" + bar + "']";
             String result = xp.evaluate(expression, xmlDocument);
-
-            response.getWriter().println("Your query results are: " + result + "<br/>");
 
         } catch (javax.xml.xpath.XPathExpressionException
                 | javax.xml.parsers.ParserConfigurationException

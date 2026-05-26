@@ -33,15 +33,13 @@ public class BenchmarkTest00001 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00001", "FileName");
+        javax.servlet.http.Cookie userCookie = new javax.servlet.http.Cookie("BenchmarkTest00001", "FileName");
         userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
         userCookie.setSecure(true);
         userCookie.setPath(request.getRequestURI());
         userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
         response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/pathtraver-00/BenchmarkTest00001.html");
+        javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("/pathtraver-00/BenchmarkTest00001.html");
         rd.include(request, response);
     }
 
@@ -68,7 +66,6 @@ public class BenchmarkTest00001 extends HttpServlet {
 
         try {
             fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + param;
-            fis = new java.io.FileInputStream(new java.io.File(fileName));
             byte[] b = new byte[1000];
             int size = fis.read(b);
             response.getWriter()
@@ -76,9 +73,7 @@ public class BenchmarkTest00001 extends HttpServlet {
                             "The beginning of file: '"
                                     + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName)
                                     + "' is:\n\n"
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
+                                    + org.owasp.esapi.ESAPI
                                             .encoder()
                                             .encodeForHTML(new String(b, 0, size)));
         } catch (Exception e) {
@@ -86,9 +81,7 @@ public class BenchmarkTest00001 extends HttpServlet {
             response.getWriter()
                     .println(
                             "Problem getting FileInputStream: "
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
+                                    + org.owasp.esapi.ESAPI
                                             .encoder()
                                             .encodeForHTML(e.getMessage()));
         } finally {
