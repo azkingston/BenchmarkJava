@@ -69,10 +69,8 @@ public class BenchmarkTest00691 extends HttpServlet {
                 java.security.SecureRandom random = new java.security.SecureRandom();
 
                 try {
-                        javax.crypto.Cipher c = javax.crypto.Cipher.getInstance("DES/CBC/PKCS5Padding");
 
                         // Prepare the cipher to encrypt
-                        javax.crypto.SecretKey key = javax.crypto.KeyGenerator.getInstance("DES").generateKey();
                         java.security.spec.AlgorithmParameterSpec paramSpec = new javax.crypto.spec.IvParameterSpec(iv);
                         c.init(javax.crypto.Cipher.ENCRYPT_MODE, key, paramSpec);
 

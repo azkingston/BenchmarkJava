@@ -23,6 +23,7 @@ RUN useradd -d /home/bench -m -s /bin/bash bench
 RUN echo bench:bench | chpasswd
 
 RUN chown -R bench /owasp/
+USER bench
 ENV PATH /owasp/BenchmarkJava:$PATH
 
 # start up Benchmark once, for 60 seconds, then kill it, so the additional dependencies required to run it are downloaded/cached in the image as well.
